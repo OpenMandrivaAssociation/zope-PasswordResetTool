@@ -1,8 +1,8 @@
-%define product		PasswordResetTool
-%define realVersion     0.4.2
-%define release         1
-
-%define version %(echo %{realVersion} | sed -e 's/-/./g')
+%define Product PasswordResetTool
+%define product passwordresettool
+%define name    zope-%{Product}
+%define version 1.0
+%define release %mkrel 1
 
 %define zope_minver	2.7
 %define plone_minver	2.0
@@ -10,22 +10,18 @@
 %define zope_home	%{_prefix}/lib/zope
 %define software_home	%{zope_home}/lib/python
 
-Summary:	Add a "reset my password" facility
-Name:		zope-%{product}
+Name:		%{name}
 Version:	%{version}
-Release:	%mkrel %{release}
+Release:	%{release}
+Summary:	Add a "reset my password" facility
 License:	GPL
 Group:		System/Servers
-Source:		http://plone.org/products/passwordresettool/releases/%{version}/PasswordResetTool-%{realVersion}.tar.bz2
-URL:		http://plone.org/products/passwordresettool/
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
-BuildArch:	noarch
+URL:        http://plone.org/products/%{product}
+Source:     http://plone.org/products/%{product}/releases/%{version}/%{Product}-%{version}.tar.gz
 Requires:	zope >= %{zope_minver}
 Requires:	plone >= %{plone_minver}
-
-Provides:	plone-Faq == %{version}
-Obsoletes:	zope-Faq
-
+BuildArch:  noarch
+BuildRoot:  %{_tmppath}/%{name}-%{version}
 
 %description
 The Password Reset Tool hooks into the standard mechanisms for password
@@ -42,7 +38,7 @@ policies simply by subclassing the tool and overriding one or two
 methods.
 
 %prep
-%setup -c
+%setup -c -q
 
 %build
 # Not much, eh? :-)
@@ -51,7 +47,7 @@ methods.
 %install
 %{__rm} -rf %{buildroot}
 %{__mkdir_p} %{buildroot}/%{software_home}/Products
-%{__cp} -a %{product} %{buildroot}%{software_home}/Products/%{product}
+%{__cp} -a %{Product} %{buildroot}%{software_home}/Products/%{Product}
 
 
 %clean
@@ -68,7 +64,5 @@ if [ -f "%{_prefix}/bin/zopectl" ] && [ "`%{_prefix}/bin/zopectl status`" != "da
 fi
 
 %files
-%defattr(0644, root, root, 0755)
+%defattr(-,root,root)
 %{software_home}/Products/*
-
-
