@@ -21,7 +21,6 @@ Source:     http://plone.org/products/%{product}/releases/%{version}/%{Product}-
 Requires:	zope >= %{zope_minver}
 Requires:	zope-Plone >= %{plone_minver}
 BuildArch:  noarch
-BuildRoot:  %{_tmppath}/%{name}-%{version}
 
 %description
 The Password Reset Tool hooks into the standard mechanisms for password
