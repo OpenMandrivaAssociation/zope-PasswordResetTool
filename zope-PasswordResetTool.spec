@@ -16,7 +16,7 @@ Release:	%{release}
 Summary:	Add a "reset my password" facility
 License:	GPL
 Group:		System/Servers
-URL:        http://plone.org/products/%{product}
+URL:        https://plone.org/products/%{product}
 Source:     http://plone.org/products/%{product}/releases/%{version}/%{Product}-%{version}.tar.gz
 Requires:	zope >= %{zope_minver}
 Requires:	zope-Plone >= %{plone_minver}
